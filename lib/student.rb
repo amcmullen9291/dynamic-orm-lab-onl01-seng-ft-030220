@@ -13,17 +13,15 @@ class Student < InteractiveRecord
   end
   
   def self.column_names
-DB[:conn].results_as_hash = true
-  sql = "PRAGMA table_info('#{table_name}')"
-  table_info = DB[:conn].execute(sql)
-6.	column_names = []
-7.	 
-8.	table_info.each do |column|
-9.	column_names << column["name"]
-10.	end
-11.	 
-12.	column_names.compact #gits rid of nil values 
-13.	end
+    DB[:conn].results_as_hash = true
+    sql = "PRAGMA table_info('#{table_name}')"
+    table_info = DB[:conn].execute(sql)
+    column_names = []
+    table_info.each do |column|
+    column_names << column["name"]
+      end
+    column_names.compact #gits rid of nil values 
+  end
 
 
 end
