@@ -4,11 +4,6 @@ require 'interactive_record.rb'
 
 class Student < InteractiveRecord
 
-  def initialize(options={})
-    options.each do |property, value|
-    self.send("#{property}=", value)
-    end
-  end
   
   def col_names_for_insert
     self.class.column_names.delete_if {|col| col == "id"}.join(", ")
@@ -34,5 +29,10 @@ class Student < InteractiveRecord
     column_names.compact #gits rid of nil values 
   end
 
+  def initialize(options={})
+    options.each do |property, value|
+    self.send("#{property}=", value)
+    end
+  end
 
 end
