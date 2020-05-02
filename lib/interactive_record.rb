@@ -2,6 +2,12 @@ require_relative "../config/environment.rb"
 require 'active_support/inflector'
 
 class InteractiveRecord
+  
+  def initialize(options={})
+    options.each do |property, value|
+    self.send("#{property}=", value)
+  end
+
   def col_names_for_insert
     self.class.column_names.delete_if {|col| col == "id"}.join(", ")
   end
@@ -26,10 +32,7 @@ class InteractiveRecord
     column_names.compact #gits rid of nil values 
   end
 
-  def initialize(options={})
-    options.each do |property, value|
-    self.send("#{property}=", value)
-    end
+  
   end
 
 end
