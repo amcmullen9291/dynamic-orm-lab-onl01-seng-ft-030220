@@ -11,5 +11,19 @@ class Student < InteractiveRecord
   def table_name_for_insert
     self.class.table_name
   end
+  
+  def self.column_names
+DB[:conn].results_as_hash = true
+  sql = "PRAGMA table_info('#{table_name}')"
+  table_info = DB[:conn].execute(sql)
+6.	column_names = []
+7.	 
+8.	table_info.each do |column|
+9.	column_names << column["name"]
+10.	end
+11.	 
+12.	column_names.compact #gits rid of nil values 
+13.	end
+
 
 end
