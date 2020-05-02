@@ -9,6 +9,11 @@ class Student < InteractiveRecord
     self.send("#{property}=", value)
     end
   end
+  
+  def col_names_for_insert
+    self.class.column_names.delete_if {|col| col == "id"}.join(", ")
+  end
+
 
   def self.table_name
     self.to_s.downcase.pluralize
