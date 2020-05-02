@@ -8,7 +8,7 @@ class Student < InteractiveRecord
     
     options.each do |property, value|
     self.send("#{property}=", value)
-    self.id ||= nil
+    self.id ||id= nil
     end
   end
   
