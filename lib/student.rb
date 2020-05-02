@@ -4,12 +4,12 @@ require 'interactive_record.rb'
 
 class Student < InteractiveRecord
 
-  def initialize(attributes)
-    #id: nil, name:, breed:
-    attributes.each {|key, value| self.send(("#{key}="), value)}
-    self.id ||= nil
+  def initialize(options={})
+    options.each do |property, value|
+    self.send("#{property}=", value)
+    end
   end
-
+  
   def col_names_for_insert
     self.class.column_names.delete_if {|col| col == "id"}.join(", ")
   end
